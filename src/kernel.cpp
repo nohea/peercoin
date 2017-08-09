@@ -464,7 +464,7 @@ bool CheckProofOfStake(CValidationState &state, const CTransaction& tx, unsigned
         return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
 
     // Verify signature
-    if (!VerifySignature(coins, tx, 0, true, 0))
+    if (!VerifySignature(coins, tx, 0, SCRIPT_VERIFY_P2SH, 0))
         return state.DoS(100, error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx.GetHash().ToString().c_str()));
 
     // Get transaction index for the previous transaction
