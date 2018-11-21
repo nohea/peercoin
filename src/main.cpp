@@ -1283,6 +1283,8 @@ int GetNumBlocksOfPeers()
 
 bool IsInitialBlockDownload()
 {
+    if (GetBoolArg("-allowgbt"))
+        return false;
     if (pindexBest == NULL || fImporting || fReindex || nBestHeight < Checkpoints::GetTotalBlocksEstimate())
         return true;
     static int64 nLastUpdate;
